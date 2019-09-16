@@ -49,10 +49,12 @@
 Internal use module for manipulating dims specifications.
 """
 
-__all__ = [] # Everything should be explicitly imported, not made available
-             # by default.
+__all__ = []
+# Everything should be explicitly imported, not made available
+# by default.
 
 import numpy as np
+
 
 def flatten(l):
     """Flattens a list of lists to the first level.
@@ -73,6 +75,7 @@ def flatten(l):
     else:
         return sum(map(flatten, l), [])
 
+
 def is_scalar(dims):
     """
     Returns True if a dims specification is effectively
@@ -80,12 +83,14 @@ def is_scalar(dims):
     """
     return np.prod(flatten(dims)) == 1
 
+
 def is_vector(dims):
     """Is a vector"""
     return (
         isinstance(dims, list) and
         isinstance(dims[0], (int, np.integer))
     )
+
 
 def is_vectorized_oper(dims):
     """Is a vectorized operator."""
@@ -142,6 +147,7 @@ def _enumerate_flat(l, idx=0):
             acc.append(labels)
         return acc, idx
 
+
 def _collapse_composite_index(dims):
     """
     Given the dimensions specification for a composite index
@@ -151,6 +157,7 @@ def _collapse_composite_index(dims):
     would collapse to [6].
     """
     return [np.prod(dims)]
+
 
 def _collapse_dims_to_level(dims, level=1):
     """
@@ -162,6 +169,7 @@ def _collapse_dims_to_level(dims, level=1):
         return _collapse_composite_index(dims)
     else:
         return [_collapse_dims_to_level(index, level=level - 1) for index in dims]
+
 
 def collapse_dims_super(dims):
     """
