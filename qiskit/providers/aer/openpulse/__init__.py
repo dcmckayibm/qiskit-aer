@@ -23,5 +23,6 @@ if "CFLAGS" in CFG_VARS:
     CFG_VARS["CFLAGS"] = CFG_VARS["CFLAGS"].replace("-Wstrict-prototypes", "")
 
 # Setup pyximport
+# pylint: disable=no-member
 pbldr.install(setup_args={'include_dirs': [np.get_include()]})
 del pbldr

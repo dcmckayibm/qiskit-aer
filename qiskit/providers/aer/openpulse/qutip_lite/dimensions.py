@@ -100,6 +100,7 @@ def is_vectorized_oper(dims):
     )
 
 
+# pylint: disable=too-many-return-statements
 def type_from_dims(dims, enforce_square=True):
     """Get the type of operator from dims structure"""
     bra_like, ket_like = map(is_scalar, dims)

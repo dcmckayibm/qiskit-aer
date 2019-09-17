@@ -137,6 +137,7 @@ class fast_csr_matrix(csr_matrix):
             A = csr_matrix((data, indices, indptr), dtype=data.dtype, shape=self.shape)
         return A
 
+    # pylint: disable=too-many-return-statements
     def multiply(self, other):
         """Point-wise multiplication by another matrix, vector, or
         scalar.
@@ -250,6 +251,7 @@ class fast_csr_matrix(csr_matrix):
         res.eliminate_zeros()
         return res
 
+    # pylint: disable=too-many-return-statements
     def __eq__(self, other):
         # Scalar other.
         if isscalarlike(other):
@@ -282,6 +284,7 @@ class fast_csr_matrix(csr_matrix):
         else:
             return False
 
+    # pylint: disable=too-many-return-statements
     def __ne__(self, other):
         # Scalar other.
         if isscalarlike(other):

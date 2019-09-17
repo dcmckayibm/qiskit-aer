@@ -221,7 +221,7 @@ def apply_projector(measured_qubits, results, h_qub, h_osc, state_vector):
     return psi
 
 
-# pylint: disable=dangerous-default-value
+# pylint: disable=dangerous-default-value,comparison-with-callable
 def init_fock_state(h_osc, h_qub, noise_dict={}):
     """ Generate initial Fock state, in the number state
     basis, for an oscillator in a thermal state defined

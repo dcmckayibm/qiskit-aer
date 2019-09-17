@@ -475,6 +475,7 @@ class Qobj():
         """
         return (-self) + other
 
+    # pylint: disable=too-many-return-statements
     def __mul__(self, other):
         """
         MULTIPLICATION with Qobj on LEFT [ ex. Qobj*4 ]
@@ -691,7 +692,7 @@ class Qobj():
             out.superrep = self.superrep
             return out.tidyup() if auto_tidyup else out
 
-        except:
+        except ValueError:
             raise ValueError('Invalid choice of exponent.')
 
     def __abs__(self):
@@ -754,6 +755,8 @@ class Qobj():
                 return self * other
             else:
                 raise TypeError("Can only act oper on ket.")
+        else:
+            return None
 
     def __getstate__(self):
         # defines what happens when Qobj object gets pickled
@@ -1153,8 +1156,8 @@ class Qobj():
         """
         if self.dims[0][0] == self.dims[1][0]:
             return -0.5j * ((1j * self).expm() - (-1j * self).expm())
-        else:
-            raise TypeError('Invalid operand for matrix square root')
+
+        raise TypeError('Invalid operand for matrix square root')
 
     def unit(self, inplace=False,
              norm=None, sparse=False,
@@ -1183,6 +1186,8 @@ class Qobj():
                             tol=tol, maxiter=maxiter)
 
             self.data /= nrm
+
+            return None
         elif not inplace:
             out = self / self.norm(norm=norm, sparse=sparse,
                                    tol=tol, maxiter=maxiter)
